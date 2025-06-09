@@ -7,7 +7,7 @@ const ItemService = {
 	async getItems(req: Request, res: Response): Promise<void> {
 		const items = await Item.find({});
 		res.json(items);
-		logger.info("Get items service invoked");
+		logger.info(`get items invoked - from ${req.host}`);
 	},
 
 	async getItemById(req: Request, res: Response): Promise<void> {
@@ -17,23 +17,32 @@ const ItemService = {
 			const item = await Item.findById(id);
 
 			if (!item) {
-				res.json(`item with the id of ${id} not found`);
+				res.json(`get item by id invoked - item with the id of ${id} not found`);
+				logger.info(
+					`get item by id invoked - unsuccessful on item id ${id} from ${req.host}`
+				);
 				return;
 			}
 
 			res.json(item);
-			logger.info("Get item by id service invoked");
+			logger.info(`get item by id invoked - on item id ${id} from ${req.host}`);
 		} catch (err: unknown) {
 			if (err instanceof Error && err.name === "CastError") {
 				res.json(`invalid id format`);
-				logger.error(`invalid id format: ${err.message}`);
+				logger.error(
+					`get item by id invoked - invalid id format: ${err.message} from ${req.host}`
+				);
 			} else {
 				res.json(`an unknown error occurred`);
 				if (err instanceof Error) {
-					logger.error(`an unknown error occurred: ${err.message}`);
+					logger.error(
+						`get item by id invoked - an unknown error occurred: ${err.message} from ${req.host}`
+					);
 				} else {
 					logger.error(
-						`an unknown error occurred: ${JSON.stringify(err)}`
+						`get item by id invoked - an unknown error occurred: ${JSON.stringify(
+							err
+						)} from ${req.host}`
 					);
 				}
 			}
@@ -48,12 +57,12 @@ const ItemService = {
 			description: body.description,
 			due: body.due,
 			complete: (body.complete = false),
-			owner: (body.owner ? body.owner : body.owber="Rob"),
+			owner: body.owner ? body.owner : (body.owber = "Rob"),
 			deleted: (body.deleted = false),
 		});
 
 		res.json(item);
-		logger.info("Create item service invoked");
+		logger.info(`create item invoked - returning id ${item.id} from ${req.host}`);
 	},
 
 	async updateItem(req: Request, res: Response): Promise<void> {
@@ -76,23 +85,23 @@ const ItemService = {
 
 			if (!item) {
 				res.json(`item with the id of ${id} not found`);
-				logger.info(`item with the id of ${id} not found`);
+				logger.info(`update item invoked - item with the id of ${id} not found from ${req.host}`);
 				return;
 			}
 
 			res.json(item);
-			logger.info(`Update item service invoked on item with id ${id}`)
+			logger.info(`update item invoked - item with id ${id} from ${req.host}`);
 		} catch (err: unknown) {
 			if (err instanceof Error && err.name === "CastError") {
 				res.json(`invalid id format`);
-				logger.error(`invalid id format: ${err.message}`);
+				logger.error(`update item invoked - invalid id format: ${err.message} from ${req.host}`);
 			} else {
 				res.json(`an unknown error occurred`);
 				if (err instanceof Error) {
-					logger.error(`an unknown error occurred: ${err.message}`);
+					logger.error(`update item invoked - an unknown error occurred: ${err.message} from ${req.host}`);
 				} else {
 					logger.error(
-						`an unknown error occurred: ${JSON.stringify(err)}`
+						`update item invoked - an unknown error occurred: ${JSON.stringify(err)} from ${req.host}`
 					);
 				}
 			}
@@ -113,22 +122,25 @@ const ItemService = {
 
 			if (!item) {
 				res.json(`item with the id of ${id} not found`);
+				logger.info(`delete item invoked - item with the id of ${id} not found from ${req.host}`);
 				return;
 			}
 
 			res.json(item);
-			logger.info(`Delete item service invoked in item with the id ${id}`)
+			logger.info(
+				`delete item invoked - item with the id ${id}`
+			);
 		} catch (err: unknown) {
 			if (err instanceof Error && err.name === "CastError") {
 				res.json(`invalid id format`);
-				logger.error(`invalid id format: ${err.message}`);
+				logger.error(`delete item invoked - invalid id format: ${err.message} from ${req.host}`);
 			} else {
 				res.json(`an unknown error occurred`);
 				if (err instanceof Error) {
-					logger.error(`an unknown error occurred: ${err.message}`);
+					logger.error(`delete item invoked - an unknown error occurred: ${err.message} from ${req.host}`);
 				} else {
 					logger.error(
-						`an unknown error occurred: ${JSON.stringify(err)}`
+						`delete item invoked - an unknown error occurred: ${JSON.stringify(err)} from ${req.host}`
 					);
 				}
 			}

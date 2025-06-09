@@ -3,17 +3,20 @@ import cors from "cors";
 import helmet from "helmet";
 import "dotenv/config";
 import connectDB from "./db";
-import ItemService from "./service/itemService";
+import ItemService from "./services/itemService";
 import { logger } from "./logger";
+import verifyApiKey from "./middlewares/auth";
 
 const app = express();
 const port = process.env.PORT;
 const version = process.env.API_VERSION;
+
+connectDB().catch((err) => logger.error(err));
+
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
-
-connectDB().catch((err) => logger.error(err));
+app.use(verifyApiKey);
 
 app.get("/", (req, res) => {
 	res.send("Hello, Madison");
