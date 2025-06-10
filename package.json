@@ -12,9 +12,9 @@
 	},
 	"license": "ISC",
 	"author": "Rob Ranf",
-	"main": "./src/netlify/functions/api.ts",
+	"main": "./netlify/functions/api.ts",
 	"scripts": {
-		"dev": "tsx watch ./src/netlify/functions/api.ts",
+		"dev": "tsx watch ./netlify/functions/api.ts",
 		"build": "tsc",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},

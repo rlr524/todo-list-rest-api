@@ -1,4 +1,4 @@
-import express, {Router} from "express";
+import express, { Router } from "express";
 import cors from "cors";
 import helmet from "helmet";
 import "dotenv/config";
@@ -18,13 +18,14 @@ connectDB().catch((err) => logger.error(err));
 api.use(cors());
 api.use(helmet());
 api.use(express.json());
-api.use(verifyApiKey);
 
 router.get("/", (req, res) => {
-    res.send("Hello, Madison");
+	res.send("Hello, Madison");
 });
 
-api.use(`/api/${version}/`, router)
+api.use(verifyApiKey);
+
+api.use(`/api/${version}`, router);
 
 api.get(`/items`, ItemService.getItems);
 api.get(`/item/:id`, ItemService.getItemById);
