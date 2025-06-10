@@ -23,14 +23,14 @@ router.get("/", (req, res) => {
 	res.send("Hello, Madison");
 });
 
-api.use(verifyApiKey);
+api.use(verifyApiKey)
+
+router.get(`/items`, ItemService.getItems);
+router.get(`/item/:id`, ItemService.getItemById);
+router.post(`/item`, ItemService.createItem);
+router.patch(`/item`, ItemService.updateItem);
+router.delete(`/item/:id`, ItemService.deleteItem);
 
 api.use(`/api/${version}`, router);
-
-api.get(`/items`, ItemService.getItems);
-api.get(`/item/:id`, ItemService.getItemById);
-api.post(`/item`, ItemService.createItem);
-api.patch(`/item`, ItemService.updateItem);
-api.delete(`/item/:id`, ItemService.deleteItem);
 
 export const handler = serverless(api);
