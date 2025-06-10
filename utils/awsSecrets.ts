@@ -5,13 +5,11 @@ import {
 } from "@aws-sdk/client-secrets-manager";
 import { fromIni } from "@aws-sdk/credential-provider-ini";
 import "dotenv/config";
-import { logger } from "./logger";
+import { logger } from "./utils/logger";
 
 let response: GetSecretValueCommandOutput;
 
-export default async function getSecrets(): Promise<
-	GetSecretValueCommandOutput
-> {
+export default async function getSecrets(): Promise<GetSecretValueCommandOutput> {
 	const profile = process.env.AWS_PROFILE;
 
 	const client = new SecretsManagerClient({

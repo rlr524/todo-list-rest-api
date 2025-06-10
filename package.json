@@ -23,7 +23,6 @@
 		"@serverless/typescript": "^4.14.1",
 		"@types/cors": "^2.8.18",
 		"@types/express": "^5.0.2",
-		"@types/morgan": "^1.9.9",
 		"eslint": "^9.26.0",
 		"globals": "^16.1.0",
 		"serverless-offline": "^14.4.0",
@@ -41,7 +40,6 @@
 		"helmet": "^8.1.0",
 		"mongodb": "^6.16.0",
 		"mongoose": "^8.14.2",
-		"morgan": "^1.10.0",
 		"serverless-http": "^3.2.0",
 		"winston": "^3.17.0"
 	}

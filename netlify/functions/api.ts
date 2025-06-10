@@ -2,9 +2,9 @@ import express, { Router } from "express";
 import cors from "cors";
 import helmet from "helmet";
 import "dotenv/config";
-import connectDB from "../../db";
+import connectDB from "../../utils/db";
 import ItemService from "../../services/itemService";
-import { logger } from "../../logger";
+import { logger } from "../../utils/logger";
 import verifyApiKey from "../../middlewares/auth";
 import serverless from "serverless-http";
 
