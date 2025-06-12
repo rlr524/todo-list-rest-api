@@ -14,7 +14,7 @@
 	"author": "Rob Ranf",
 	"main": "./netlify/functions/api.ts",
 	"scripts": {
-		"dev": "tsx watch ./netlify/functions/api.ts",
+		"dev": "netlify dev",
 		"build": "tsc",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
