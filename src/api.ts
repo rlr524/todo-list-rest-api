@@ -2,14 +2,14 @@ import express, { Router } from "express";
 import cors from "cors";
 import helmet from "helmet";
 import "dotenv/config";
-import connectDB from "../../utils/db";
-import ItemService from "../../services/itemService";
-import { logger } from "../../utils/logger";
-import verifyApiKey from "../../middlewares/auth";
-import serverless from "serverless-http";
+import connectDB from "./utils/db";
+import ItemService from "./services/itemService";
+import { logger } from "./utils/logger";
+import verifyApiKey from "./middlewares/auth";
 
 const api = express();
 const router = Router();
+const port = process.env.PORT;
 
 const version = process.env.API_VERSION;
 
@@ -33,4 +33,6 @@ router.delete(`/item/:id`, ItemService.deleteItem);
 
 api.use(`/api/${version}`, router);
 
-export const handler = serverless(api);
+api.listen(port, () => {
+	console.log(`App listening on ${port}`);
+})
