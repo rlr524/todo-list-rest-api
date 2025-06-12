@@ -1,6 +1,5 @@
 [build]
   command = "npm run build"
-  publish = "output/"
 [functions]
   external_node_modules = ["express"]
   node_bundler = "esbuild"
