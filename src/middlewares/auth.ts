@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import "dotenv/config";
-import { logger } from "../utils/logger";
+import logger from "../utils/logger";
 
 const storedKey: string | undefined = process.env.API_KEY;
 

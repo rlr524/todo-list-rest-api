@@ -5,7 +5,7 @@ import {
 } from "@aws-sdk/client-secrets-manager";
 import { fromIni } from "@aws-sdk/credential-provider-ini";
 import "dotenv/config";
-import { logger } from "../utils/logger";
+import logger from "./logger";
 
 let response: GetSecretValueCommandOutput;
 

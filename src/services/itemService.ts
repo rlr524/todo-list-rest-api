@@ -1,7 +1,7 @@
 import { Item } from "../models/item";
 import { Request, Response } from "express";
 import { Types } from "mongoose";
-import { logger } from "../utils/logger";
+import logger from "../utils/logger";
 
 const ItemService = {
 	async getItems(req: Request, res: Response): Promise<void> {
