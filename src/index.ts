@@ -25,7 +25,7 @@ app.use(express.json());
 
 app.use(verifyApiKey);
 
-app.get(`/api/${version}/items`, ItemService.getItems);
+app.get(`/api/${version}/items`, ItemService.getActiveItems);
 app.get(`/api/${version}/item/:id`, ItemService.getItemById);
 app.post(`/api/${version}/item`, ItemService.createItem);
 app.patch(`/api/${version}/item`, ItemService.updateItem);

@@ -10,6 +10,14 @@ const ItemService = {
 		logger.info(`get items invoked - from ${req.host}`);
 	},
 
+	async getActiveItems(req: Request, res: Response): Promise<void> {
+		const items = await Item.find({
+			deleted: false,
+		});
+		res.json(items);
+		logger.info(`get active items invoked - from ${req.host}`);
+	},
+
 	async getItemById(req: Request, res: Response): Promise<void> {
 		const id = new Types.ObjectId(req.params.id);
 
@@ -60,8 +68,11 @@ const ItemService = {
 			title: body.title,
 			description: body.description,
 			due: body.due,
+			importance: body.importance
+				? body.importance
+				: (body.importance = "Medium"),
 			complete: (body.complete = false),
-			owner: body.owner ? body.owner : (body.owber = "Rob"),
+			owner: body.owner ? body.owner : (body.owner = "Rob"),
 			deleted: (body.deleted = false),
 		});
 
@@ -73,7 +84,8 @@ const ItemService = {
 
 	async updateItem(req: Request, res: Response): Promise<void> {
 		const id = req.body.id;
-		const { title, description, due, complete, owner } = req.body;
+		const { title, description, due, importance, complete, owner } =
+			req.body;
 
 		try {
 			const item = await Item.findOneAndUpdate(
@@ -82,6 +94,7 @@ const ItemService = {
 					title: title,
 					description: description,
 					due: due,
+					importance: importance,
 					complete: complete,
 					owner: owner,
 					deleted: false,
