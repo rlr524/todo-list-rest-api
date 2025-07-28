@@ -1,16 +1,13 @@
 {
 	"compilerOptions": {
-		"module": "NodeNext",
+		"module": "commonjs",
 		"esModuleInterop": true,
-		"moduleResolution": "nodenext",
 		"noImplicitReturns": true,
 		"noUnusedLocals": true,
-		"outDir": "lib",
+		"outDir": "dist",
 		"sourceMap": true,
 		"strict": true,
-		"target": "es2022",
-		"lib": ["ES2022"]
+		"target": "es2020"
 	},
-	"compileOnSave": true,
-	"include": ["src"]
+	"include": ["src/**/*"]
 }

@@ -1,15 +1,16 @@
 {
-	"name": "functions",
+	"name": "todo-list-rest-api",
 	"scripts": {
 		"lint": "eslint --ext .js,.ts .",
-		"build": "tsc",
+		"build": "npm ci && tsc",
 		"build:watch": "tsc --watch",
-		"dev": "tsx src/index.ts"
+		"dev": "tsx src/index.ts",
+		"deploy": "npm run build && cd terraform && terraform apply"
 	},
 	"engines": {
 		"node": "22"
 	},
-	"main": "lib/index.js",
+	"main": "dist/index.js",
 	"dependencies": {
 		"@aws-sdk/client-secrets-manager": "^3.812.0",
 		"@aws-sdk/credential-provider-ini": "^3.812.0",
