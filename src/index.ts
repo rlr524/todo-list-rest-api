@@ -4,7 +4,7 @@ import helmet from "helmet";
 import "dotenv/config";
 import connectDB from "./utils/db";
 import ItemService from "./services/itemService";
-import verifyApiKey from "./middlewares/auth";
+//import verifyApiKey from "./middlewares/auth";
 import logger from "./utils/logger";
 import serverless from "serverless-http";
 
@@ -23,7 +23,7 @@ app.use(cors());
 app.use(helmet());
 app.use(express.json());
 
-app.use(verifyApiKey);
+//app.use(verifyApiKey);
 
 app.get(`/api/${version}/items`, ItemService.getActiveItems);
 app.get(`/api/${version}/item/:id`, ItemService.getItemById);
