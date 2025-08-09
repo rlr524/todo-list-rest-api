@@ -3,6 +3,7 @@
 	"scripts": {
 		"lint": "eslint --ext .js,.ts .",
 		"build": "npm ci && tsc",
+		"bundle": "mkdir out && zip -r ./out/lambda_function.zip ./dist",
 		"build:watch": "tsc --watch",
 		"dev": "tsx src/index.ts",
 		"deploy": "npm run build && cd terraform && terraform apply"
